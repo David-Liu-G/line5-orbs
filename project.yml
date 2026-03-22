@@ -1,0 +1,23 @@
+name: Line5
+options:
+  bundleIdPrefix: com.line5
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  Line5:
+    type: application
+    platform: iOS
+    sources:
+      - Line5
+    info:
+      path: Line5/Info.plist
+    settings:
+      base:
+        INFOPLIST_FILE: Line5/Info.plist
+        GENERATE_INFOPLIST_FILE: false
+        DEVELOPMENT_TEAM: PYRKU48JPS
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      path: Line5/Line5.entitlements
+      properties:
+        com.apple.developer.game-center: true
