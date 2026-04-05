@@ -34,14 +34,15 @@ class GameScene: SKScene {
     // MARK: - Layout
 
     func layoutBoard() {
-        let sceneW = size.width
+        let maxBoardWidth: CGFloat = 680
+        let effectiveW = min(size.width, maxBoardWidth)
         let totalGap = cellGap * CGFloat(gridCols - 1)
-        cellSize = (sceneW - 32 - boardPad * 2 - totalGap) / CGFloat(gridCols)
+        cellSize = (effectiveW - 32 - boardPad * 2 - totalGap) / CGFloat(gridCols)
 
         let boardW = boardPad * 2 + CGFloat(gridCols) * cellSize + totalGap
         let boardH = boardPad * 2 + CGFloat(gridRows) * cellSize + CGFloat(gridRows - 1) * cellGap
         boardOrigin = CGPoint(
-            x: (sceneW - boardW) / 2,
+            x: (size.width - boardW) / 2,
             y: (size.height - boardH) / 2
         )
 
@@ -133,6 +134,7 @@ class GameScene: SKScene {
     }
 
     func reportFinalScore() {
+        run(SoundManager.shared.gameOver)
         Task { @MainActor in
             GameCenterManager.shared.submitScore(logic.score)
             GameCenterManager.shared.checkAchievements(
@@ -150,15 +152,35 @@ class GameScene: SKScene {
         guard let pos = gridFromPoint(point) else { return }
 
         if logic.grid[pos.r][pos.c] != -1 {
-            // Select ball
-            deselectCurrent()
-            selectedPos = pos
-            cellNodes[pos.r][pos.c].fillColor = UIColor(hex: 0x2a2050)
-            ballNodes[pos.r][pos.c]?.playBounce()
-            particleManager.spawnSelect(at: cellPosition(r: pos.r, c: pos.c), colorIndex: logic.grid[pos.r][pos.c])
+            if let sel = selectedPos, sel != pos {
+                // Tapped another ball — try swap
+                if logic.canSwap(from: sel, to: pos) {
+                    run(SoundManager.shared.swap)
+                    deselectCurrent()
+                    isAnimating = true
+                    animateSwap(from: sel, to: pos)
+                } else {
+                    // Can't swap — just select the new ball
+                    deselectCurrent()
+                    run(SoundManager.shared.select)
+                    selectedPos = pos
+                    cellNodes[pos.r][pos.c].fillColor = UIColor(hex: 0x2a2050)
+                    ballNodes[pos.r][pos.c]?.playBounce()
+                    particleManager.spawnSelect(at: cellPosition(r: pos.r, c: pos.c), colorIndex: logic.grid[pos.r][pos.c])
+                }
+            } else {
+                // Select ball
+                deselectCurrent()
+                run(SoundManager.shared.select)
+                selectedPos = pos
+                cellNodes[pos.r][pos.c].fillColor = UIColor(hex: 0x2a2050)
+                ballNodes[pos.r][pos.c]?.playBounce()
+                particleManager.spawnSelect(at: cellPosition(r: pos.r, c: pos.c), colorIndex: logic.grid[pos.r][pos.c])
+            }
         } else if let sel = selectedPos {
-            // Try move
+            // Try move to empty cell
             if let path = logic.findPath(from: sel, to: pos) {
+                run(SoundManager.shared.move)
                 deselectCurrent()
                 isAnimating = true
                 animateMove(from: sel, path: path)
@@ -238,9 +260,99 @@ class GameScene: SKScene {
         }
     }
 
+    func animateSwap(from a: GridPos, to b: GridPos) {
+        guard let ballA = ballNodes[a.r][a.c], let ballB = ballNodes[b.r][b.c] else {
+            isAnimating = false
+            return
+        }
+
+        let colorA = logic.grid[a.r][a.c]
+        let colorB = logic.grid[b.r][b.c]
+
+        // Find path with both cells cleared (same as canSwap logic)
+        logic.grid[a.r][a.c] = -1
+        logic.grid[b.r][b.c] = -1
+        let pathAtoB = logic.findPath(from: a, to: b) ?? [a, b]
+        logic.grid[a.r][a.c] = colorA
+        logic.grid[b.r][b.c] = colorB
+
+        let pathBtoA = Array(pathAtoB.reversed())
+
+        // Build path-following actions for ball A (a → b)
+        var actionsA: [SKAction] = []
+        for i in 1..<pathAtoB.count {
+            let target = cellPosition(r: pathAtoB[i].r, c: pathAtoB[i].c)
+            actionsA.append(SKAction.move(to: target, duration: 0.04))
+            actionsA.append(SKAction.run { [weak self] in
+                self?.particleManager.spawnTrail(at: target, colorIndex: colorA)
+            })
+        }
+
+        // Build path-following actions for ball B (b → a)
+        var actionsB: [SKAction] = []
+        for i in 1..<pathBtoA.count {
+            let target = cellPosition(r: pathBtoA[i].r, c: pathBtoA[i].c)
+            actionsB.append(SKAction.move(to: target, duration: 0.04))
+            actionsB.append(SKAction.run { [weak self] in
+                self?.particleManager.spawnTrail(at: target, colorIndex: colorB)
+            })
+        }
+
+        // Bump ballB z-position so they don't overlap weirdly
+        ballB.zPosition += 1
+
+        ballA.run(SKAction.sequence(actionsA))
+        ballB.run(SKAction.sequence(actionsB)) { [weak self] in
+            guard let self = self else { return }
+            ballB.zPosition -= 1
+
+            // Update node references
+            self.ballNodes[a.r][a.c] = ballB
+            self.ballNodes[b.r][b.c] = ballA
+
+            // Execute logic
+            let result = self.logic.performSwap(from: a, to: b)
+            self.notifyUI()
+
+            switch result {
+            case .linesCleared(let removed, _):
+                self.animateRemoval(positions: removed) {
+                    self.isAnimating = false
+                }
+
+            case .ballsSpawned(let spawned, let postRemoved, _):
+                self.syncSpawned(spawned) {
+                    if !postRemoved.isEmpty {
+                        self.animateRemoval(positions: postRemoved) {
+                            self.isAnimating = false
+                            if self.logic.isGameOver {
+                                self.reportFinalScore()
+                                self.onGameOver?(self.logic.score)
+                            }
+                        }
+                    } else {
+                        self.isAnimating = false
+                        if self.logic.isGameOver {
+                            self.reportFinalScore()
+                            self.onGameOver?(self.logic.score)
+                        }
+                    }
+                }
+                self.notifyUI()
+
+            case .gameOver:
+                self.syncBoard(animated: true)
+                self.isAnimating = false
+                self.reportFinalScore()
+                self.onGameOver?(self.logic.score)
+            }
+        }
+    }
+
     func animateRemoval(positions: Set<GridPos>, completion: @escaping () -> Void) {
         var remaining = positions.count
         if remaining == 0 { completion(); return }
+        run(SoundManager.shared.clear)
 
         for pos in positions {
             if let ball = ballNodes[pos.r][pos.c] {
@@ -258,6 +370,7 @@ class GameScene: SKScene {
     }
 
     func syncSpawned(_ positions: [GridPos], completion: @escaping () -> Void) {
+        if !positions.isEmpty { run(SoundManager.shared.spawn) }
         for pos in positions {
             let color = logic.grid[pos.r][pos.c]
             if color != -1 {

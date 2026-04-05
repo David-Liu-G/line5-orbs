@@ -27,6 +27,7 @@ class GameLogic {
         score = 0
         isGameOver = false
         totalLinesCleared = 0
+
         generateNextColors()
         _ = spawnBalls()
         generateNextColors()
@@ -122,10 +123,56 @@ class GameLogic {
             grid[pos.r][pos.c] = -1
         }
         let count = positions.count
-        let points = 10 + max(0, count - lineMin) * 5
+        let extra = max(0, count - lineMin)
+        let points = 10 + extra * extra * 10
         score += points
         totalLinesCleared += 1
         return points
+    }
+
+    /// Check if two occupied cells can swap (path exists treating each other's cell as empty)
+    func canSwap(from a: GridPos, to b: GridPos) -> Bool {
+        // Temporarily clear both cells for pathfinding
+        let colorA = grid[a.r][a.c]
+        let colorB = grid[b.r][b.c]
+        grid[a.r][a.c] = -1
+        grid[b.r][b.c] = -1
+        let path = findPath(from: a, to: b)
+        grid[a.r][a.c] = colorA
+        grid[b.r][b.c] = colorB
+        return path != nil
+    }
+
+    func performSwap(from a: GridPos, to b: GridPos) -> MoveResult {
+        let colorA = grid[a.r][a.c]
+        let colorB = grid[b.r][b.c]
+        grid[a.r][a.c] = colorB
+        grid[b.r][b.c] = colorA
+
+        // Check lines at both positions
+        let removed = findLines()
+        if !removed.isEmpty {
+            let points = removeLines(removed)
+            return .linesCleared(removed: removed, points: points)
+        }
+
+        // No lines — spawn
+        let spawned = spawnBalls()
+        generateNextColors()
+
+        let postRemoved = findLines()
+        if !postRemoved.isEmpty {
+            let postPoints = removeLines(postRemoved)
+            if emptyCells().isEmpty { isGameOver = true }
+            return .ballsSpawned(positions: spawned, postRemoved: postRemoved, postPoints: postPoints)
+        }
+
+        if emptyCells().isEmpty {
+            isGameOver = true
+            return .gameOver
+        }
+
+        return .ballsSpawned(positions: spawned, postRemoved: [], postPoints: 0)
     }
 
     func performMove(from start: GridPos, to end: GridPos) -> MoveResult {

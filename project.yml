@@ -13,6 +13,7 @@ targets:
       path: Line5/Info.plist
     settings:
       base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.line5.game
         INFOPLIST_FILE: Line5/Info.plist
         GENERATE_INFOPLIST_FILE: false
         DEVELOPMENT_TEAM: PYRKU48JPS

@@ -7,31 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09F441A1FDF6B2EB9FB445F6 /* swap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D06B2467EFB084B2D44A8FA /* swap.wav */; };
 		190514BCD293BB4A09977361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C1E33A7DB67C9C5D18447A /* ContentView.swift */; };
 		1ABE89CC0B9069011537D190 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C743150F2C3D203D2157E9 /* GameCenterManager.swift */; };
+		25DBAC9BE2F3F8F0DBA84B85 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = DB6B484ADFEF9B5839733CB9 /* select.wav */; };
+		3ED12F4B926C927333C0BAA6 /* move.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1CEC4B00CFD06FF0AECFDDE0 /* move.wav */; };
 		46F7D3FE2D306B61829119E0 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571ACA248E762B575BBE911 /* GameLogic.swift */; };
 		717FFD1BDD9A4428CB5C12E4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419F690A2A786ACBFC9CAF1 /* Constants.swift */; };
+		83B6348771042390F3CAE6E7 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2BD9A2DE859009ED264DC /* SoundManager.swift */; };
+		8E391741D7200BCD9B80D839 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1CE982354028BB6F6B66A2C7 /* gameover.wav */; };
+		8FCC0D05EE79409BA1228425 /* spawn.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7CFD29EBA87B5DD9ABF03BD /* spawn.wav */; };
+		A1B2C3D4E5F6A7B89FB445F6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* AdManager.swift */; };
 		AAA0A50147FD7B56EEE662B8 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579F2AC239B95F38A72B3CBB /* ParticleManager.swift */; };
 		B094F0A509ABBF6884D5B2BD /* Line5App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB23A4AA9E10BE4CDEF5166 /* Line5App.swift */; };
+		B2C3D4E5F6A7B8C99FB445F6 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0E1F2A3 /* StoreManager.swift */; };
 		B81A1F755D73066B6D5AEBE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395B3234A2462859272005F4 /* Assets.xcassets */; };
+		C3D4E5F6A7B8C9D09FB445F6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* GoogleMobileAds */; };
 		C77E93BA67F2C25191B51AE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3252558E09CC8013DE6E5C52 /* GameScene.swift */; };
 		E5A14E718B2BA011EC135877 /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42A2CD091327F959516FBD /* BallNode.swift */; };
+		EFC19A842F79F05C000ABF03 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = EFC19A832F79F05C000ABF03 /* Products.storekit */; };
+		F47A9C9884DE8955799B3478 /* clear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7BC3455D09E73156C3A24DA2 /* clear.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CE982354028BB6F6B66A2C7 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameover.wav; sourceTree = "<group>"; };
+		1CEC4B00CFD06FF0AECFDDE0 /* move.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move.wav; sourceTree = "<group>"; };
+		2D06B2467EFB084B2D44A8FA /* swap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = swap.wav; sourceTree = "<group>"; };
 		3252558E09CC8013DE6E5C52 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		395B3234A2462859272005F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E42A2CD091327F959516FBD /* BallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallNode.swift; sourceTree = "<group>"; };
 		579F2AC239B95F38A72B3CBB /* ParticleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
 		64C743150F2C3D203D2157E9 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
+		7BC3455D09E73156C3A24DA2 /* clear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clear.wav; sourceTree = "<group>"; };
 		93E20CD5B2B95F23EE085309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9419F690A2A786ACBFC9CAF1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E2C0D1436D22C9C08713C37 /* Line5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Line5.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		A571ACA248E762B575BBE911 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		A7CFD29EBA87B5DD9ABF03BD /* spawn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spawn.wav; sourceTree = "<group>"; };
 		AD0D189089F8991466E7D954 /* Line5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Line5.entitlements; sourceTree = "<group>"; };
+		B2C3D4E5F6A7B8C9D0E1F2A3 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		C4D5E6F7A8B9C0D1E2F3A4B5 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		CAB23A4AA9E10BE4CDEF5166 /* Line5App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line5App.swift; sourceTree = "<group>"; };
+		DB6B484ADFEF9B5839733CB9 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select.wav; sourceTree = "<group>"; };
+		EFC19A832F79F05C000ABF03 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F0C1E33A7DB67C9C5D18447A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F6B2BD9A2DE859009ED264DC /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4E5F6A7B8C9D0E1F2A3B4C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3D4E5F6A7B8C9D09FB445F6 /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		14EA94778C151EED91B7559A = {
@@ -53,17 +86,28 @@
 		DF99A3C324B85FD9C18AF8C9 /* Line5 */ = {
 			isa = PBXGroup;
 			children = (
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* AdManager.swift */,
+				EFC19A832F79F05C000ABF03 /* Products.storekit */,
 				395B3234A2462859272005F4 /* Assets.xcassets */,
 				3E42A2CD091327F959516FBD /* BallNode.swift */,
+				7BC3455D09E73156C3A24DA2 /* clear.wav */,
 				9419F690A2A786ACBFC9CAF1 /* Constants.swift */,
 				F0C1E33A7DB67C9C5D18447A /* ContentView.swift */,
 				64C743150F2C3D203D2157E9 /* GameCenterManager.swift */,
 				A571ACA248E762B575BBE911 /* GameLogic.swift */,
+				1CE982354028BB6F6B66A2C7 /* gameover.wav */,
 				3252558E09CC8013DE6E5C52 /* GameScene.swift */,
 				93E20CD5B2B95F23EE085309 /* Info.plist */,
 				AD0D189089F8991466E7D954 /* Line5.entitlements */,
 				CAB23A4AA9E10BE4CDEF5166 /* Line5App.swift */,
+				1CEC4B00CFD06FF0AECFDDE0 /* move.wav */,
 				579F2AC239B95F38A72B3CBB /* ParticleManager.swift */,
+				C4D5E6F7A8B9C0D1E2F3A4B5 /* Products.storekit */,
+				DB6B484ADFEF9B5839733CB9 /* select.wav */,
+				F6B2BD9A2DE859009ED264DC /* SoundManager.swift */,
+				A7CFD29EBA87B5DD9ABF03BD /* spawn.wav */,
+				B2C3D4E5F6A7B8C9D0E1F2A3 /* StoreManager.swift */,
+				2D06B2467EFB084B2D44A8FA /* swap.wav */,
 			);
 			path = Line5;
 			sourceTree = "<group>";
@@ -76,6 +120,7 @@
 			buildConfigurationList = E6270AC5144C73BB3CF1CC79 /* Build configuration list for PBXNativeTarget "Line5" */;
 			buildPhases = (
 				A82C67AD8BD458163D736012 /* Sources */,
+				D4E5F6A7B8C9D0E1F2A3B4C5 /* Frameworks */,
 				3DDE1D4D58724611AC5F940B /* Resources */,
 			);
 			buildRules = (
@@ -84,6 +129,7 @@
 			);
 			name = Line5;
 			packageProductDependencies = (
+				F6A7B8C9D0E1F2A3B4C5D6E7 /* GoogleMobileAds */,
 			);
 			productName = Line5;
 			productReference = 9E2C0D1436D22C9C08713C37 /* Line5.app */;
@@ -112,6 +158,9 @@
 			);
 			mainGroup = 14EA94778C151EED91B7559A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E5F6A7B8C9D0E1F2A3B4C5D6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D19D429749E497C9CA253A12 /* Products */;
 			projectDirPath = "";
@@ -127,7 +176,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC19A842F79F05C000ABF03 /* Products.storekit in Resources */,
 				B81A1F755D73066B6D5AEBE1 /* Assets.xcassets in Resources */,
+				F47A9C9884DE8955799B3478 /* clear.wav in Resources */,
+				8E391741D7200BCD9B80D839 /* gameover.wav in Resources */,
+				3ED12F4B926C927333C0BAA6 /* move.wav in Resources */,
+				25DBAC9BE2F3F8F0DBA84B85 /* select.wav in Resources */,
+				8FCC0D05EE79409BA1228425 /* spawn.wav in Resources */,
+				09F441A1FDF6B2EB9FB445F6 /* swap.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B2C3D4E5F6A7B89FB445F6 /* AdManager.swift in Sources */,
 				E5A14E718B2BA011EC135877 /* BallNode.swift in Sources */,
 				717FFD1BDD9A4428CB5C12E4 /* Constants.swift in Sources */,
 				190514BCD293BB4A09977361 /* ContentView.swift in Sources */,
@@ -146,6 +203,8 @@
 				C77E93BA67F2C25191B51AE3 /* GameScene.swift in Sources */,
 				B094F0A509ABBF6884D5B2BD /* Line5App.swift in Sources */,
 				AAA0A50147FD7B56EEE662B8 /* ParticleManager.swift in Sources */,
+				83B6348771042390F3CAE6E7 /* SoundManager.swift in Sources */,
+				B2C3D4E5F6A7B8C99FB445F6 /* StoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +392,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E5F6A7B8C9D0E1F2A3B4C5D6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F6A7B8C9D0E1F2A3B4C5D6E7 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5F6A7B8C9D0E1F2A3B4C5D6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E87A7FCE03622C0A45A0D388 /* Project object */;
 }

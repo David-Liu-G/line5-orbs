@@ -15,12 +15,12 @@ struct BallColor {
     let light: UIColor
 
     static let all: [BallColor] = [
-        BallColor(primary: UIColor(hex: 0xe91e8c), light: UIColor(hex: 0xffb0dd)), // pink
-        BallColor(primary: UIColor(hex: 0x3d7cf5), light: UIColor(hex: 0xa0c8ff)), // blue
-        BallColor(primary: UIColor(hex: 0x2ecc71), light: UIColor(hex: 0x85e89d)), // green
-        BallColor(primary: UIColor(hex: 0xf5c842), light: UIColor(hex: 0xfff09e)), // yellow
-        BallColor(primary: UIColor(hex: 0x9b4dca), light: UIColor(hex: 0xd9a0ff)), // purple
-        BallColor(primary: UIColor(hex: 0x00d4aa), light: UIColor(hex: 0x80ffee)), // teal
+        BallColor(primary: UIColor(hex: 0xff2d55), light: UIColor(hex: 0xff8fa5)), // red
+        BallColor(primary: UIColor(hex: 0x007aff), light: UIColor(hex: 0x80bcff)), // blue
+        BallColor(primary: UIColor(hex: 0x34c759), light: UIColor(hex: 0x8de8a5)), // green
+        BallColor(primary: UIColor(hex: 0xffcc00), light: UIColor(hex: 0xffe680)), // yellow
+        BallColor(primary: UIColor(hex: 0xaf52de), light: UIColor(hex: 0xd5a4ee)), // purple
+        BallColor(primary: UIColor(hex: 0xff9500), light: UIColor(hex: 0xffc780)), // orange
     ]
 }
 
